@@ -13,7 +13,18 @@
       <p>Din ena plats för scouting och rekrytering.</p>
       <section>
         <h2>Spelare</h2>
-        
+        <select id="position-filter">
+          <option value="alla">Alla positioner</option>
+          <option value="Goalkeeper">Målvakt</option>
+          <option value="Defender">Försvarare</option>
+          <option value="Midfielder">Mittfältare</option>
+          <option value="Striker">Anfallare</option>
+        </select>
+        <select id="sort-filter">
+          <option value="name">Namn</option>
+          <option value="age">Ålder</option>
+          <option value="value">Värde</option>
+        </select>
         <div id="scout-results"></div>
       </section>
       
