@@ -20,6 +20,9 @@ const players = [
 ];
 console.log(players);
 
+const storedPlayers = localStorage.getItem("players");
+const players = storedPlayers ? JSON.parse(storedPlayers) :players;
+
 
 const scoutResults = document.getElementById("scout-results");
 const positionFilter = document.getElementById("position-filter");
@@ -47,6 +50,13 @@ function updatePlayerList() {
 
 function renderPlayers(playerList) {
   scoutResults.replaceChildren();
+  if (playerList.length === 0) {
+    const noPlayersMessage = document.createElement("p");
+    noPlayersMessage.classList.add("no-players-message");
+    noPlayersMessage.textContent = "Inga spelare hittades.";
+    scoutResults.append(noPlayersMessage);
+    return;
+  }
 
   playerList.forEach(player => {
     const playerCard = document.createElement("article");
@@ -87,6 +97,34 @@ function renderPlayers(playerList) {
   });
 }
 
+const playerForm = document.getElementById("player-form");
+const playerNameInput = document.getElementById("player-name");
+const playerAgeInput = document.getElementById("player-age");
+const playerPositionInput = document.getElementById("player-position");
+const playerClubInput = document.getElementById("player-club");
+const playerNationalityInput = document.getElementById("player-nationality");
+const playerValueInput = document.getElementById("player-value");
+playerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const newPlayer = {
+    id: players.length + 1,
+    name: playerNameInput.value,
+    age: parseInt(playerAgeInput.value),
+    position: playerPositionInput.value,
+    club: playerClubInput.value,
+    nationality: playerNationalityInput.value,
+    value: Number(playerValueInput.value)
+  };
+
+  players.push(newPlayer);
+  savePlayersToLocalStorage();
+  updatePlayerList();
+  playerForm.reset();
+});
+
+function savePlayersToLocalStorage() {
+  localStorage.setItem("players", JSON.stringify(players));
+}
 positionFilter.addEventListener("change", updatePlayerList);
 sortFilter.addEventListener("change", updatePlayerList);
 updatePlayerList();

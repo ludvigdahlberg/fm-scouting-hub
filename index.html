@@ -11,6 +11,26 @@
     <main>
       <h1>Välkommen till ScoutHub</h1>
       <p>Din ena plats för scouting och rekrytering.</p>
+      <form id="player-form">
+        <label for="player-name">Namn:</label>
+        <input type="text" id="player-name" name="player-name" required>
+        <label for="player-age">Ålder:</label>
+        <input type="number" id="player-age" name="player-age" min="15" max="40" required>
+        <label for="player-position">Position:</label>
+        <select id="player-position" name="player-position" required>
+          <option value="Goalkeeper">Målvakt</option>
+          <option value="Defender">Försvarare</option>
+          <option value="Midfielder">Mittfältare</option>
+          <option value="Striker">Anfallare</option>
+        </select>
+        <label for="player-club">Klubb:</label>
+        <input type="text" id="player-club" name="player-club" required>
+        <label for="player-nationality">Nationalitet:</label>
+        <input type="text" id="player-nationality" name="player-nationality" required>
+        <label for="player-value">Värde:</label>
+        <input type="number" id="player-value" name="player-value" min="0" required>
+        <button type="submit">Lägg till spelare</button>
+      </form>
       <section>
         <h2>Spelare</h2>
         <select id="position-filter">
